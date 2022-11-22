@@ -36,7 +36,7 @@ see below for options
 
 Examples
 list files that will get their date changed  
-& './fix nextcloud file creation date.ps1' `  
+& './fix nextcloud file creation date.ps1' `    
 	-dbserver '127.0.0.1' `  
 	-dbname 'owncloud' `  
 	-dataDirectory '/media/owncloud_storage/data/' `  
