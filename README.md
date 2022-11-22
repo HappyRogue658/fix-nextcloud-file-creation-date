@@ -35,7 +35,7 @@ see below for options
 & 'fix nextcloud file creation date.ps1'
 
 Examples
-list files that will get their date changed
+list files that will get their date changed  
 & './fix nextcloud file creation date.ps1' `  
 	-dbserver '127.0.0.1' `  
 	-dbname 'owncloud' `  
