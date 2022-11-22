@@ -32,7 +32,8 @@ import-Module SimplySQL
 7) confirm module is imported
 Get-Module SimplySQL
 
-8) get 'fix nextcloud file creation date.ps1' script on server somehow
+8) download 'fix nextcloud file creation date.ps1' script
+https://github.com/HappyRogue658/fix-nextcloud-file-creation-date/blob/1cfabdc0915fc214e874a49b08973e601bfa2601/fix%20nextcloud%20file%20creation%20date.ps1
 
 9) run script
 see below for options
