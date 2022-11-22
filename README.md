@@ -1,13 +1,13 @@
 # fix-nextcloud-file-creation-date
 fixes file creation date set back to 1970 by bugged version of nextcloud client
 
-This script override the file system creation date with the date taken from nextcloud DB
+This script overrides the file system creation date with the date taken from nextcloud DB
 uses SQL query by wwe (https://help.nextcloud.com/u/wwe)
 
 tested on Ubuntu with MySQL DB
 This requires PowerShell as well as the PS module SimplySql
 
-1) downlaod PowerShell
+1) download PowerShell
 wget https://github.com/PowerShell/PowerShell/releases/download/v7.3.0/powershell_7.3.0-1.deb_amd64.deb
 
 2) Install the downloaded package
@@ -57,7 +57,7 @@ list files that will get their date changed
 	-dataDirectory '/media/owncloud_storage/data/' `
 	-action 'changeDateSimulated'
 
-change create date (Modify in Linux) to the date retrieved from DB
+change create date ('Modify' date in Linux) to the date retrieved from DB
 & './fix nextcloud file creation date.ps1' `
 	-dbserver '127.0.0.1' `
 	-dbname 'owncloud' `
