@@ -1,6 +1,9 @@
 # fix-nextcloud-file-creation-date
 fixes file creation date set back to 1970 by bugged version of nextcloud client
 
+view this file in raw mode!
+https://raw.githubusercontent.com/HappyRogue658/fix-nextcloud-file-creation-date/main/README.md
+
 This script overrides the file system creation date with the date taken from nextcloud DB
 uses SQL query by wwe (https://help.nextcloud.com/u/wwe)
 
