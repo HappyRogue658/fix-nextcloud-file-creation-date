@@ -35,11 +35,14 @@ Get-Module SimplySQL
 8) download 'fix nextcloud file creation date.ps1' script
 wget https://github.com/HappyRogue658/fix-nextcloud-file-creation-date/raw/main/fix%20nextcloud%20file%20creation%20date.ps1
 
-9) run script
-see below for options
-& 'fix nextcloud file creation date.ps1'
+9) optional: if you run the script multiple times, it now makes sense to enter SQL credentials, before running the script
+$cred = get-credential
 
-10) run occ scan
+10) run script
+see below for options
+& './fix nextcloud file creation date.ps1'
+
+11) run occ scan
 sudo -u www-data php occ files:scan --all
 
 Examples
