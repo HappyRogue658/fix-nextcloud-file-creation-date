@@ -1,5 +1,6 @@
 # fix-nextcloud-file-creation-date
 fixes file creation date set back to 1970 by bugged version of nextcloud client
+(see https://help.nextcloud.com/t/desktop-client-3-4-0-destroys-local-time-stamp-and-keeps-uploading-data-to-server )
 
 view this file in raw mode!
 https://raw.githubusercontent.com/HappyRogue658/fix-nextcloud-file-creation-date/main/README.md
