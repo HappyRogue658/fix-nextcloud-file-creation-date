@@ -38,6 +38,9 @@ Get-Module SimplySQL
 see below for options
 & 'fix nextcloud file creation date.ps1'
 
+10) run occ scan
+sudo -u www-data php occ files:scan --all
+
 Examples
 list files that will get their date changed  
 & './fix nextcloud file creation date.ps1' `    
