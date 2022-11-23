@@ -2,8 +2,7 @@
 fixes file creation date set back to 1970 by bugged version of nextcloud client
 (see https://help.nextcloud.com/t/desktop-client-3-4-0-destroys-local-time-stamp-and-keeps-uploading-data-to-server )
 
-view this file in raw mode!
-https://raw.githubusercontent.com/HappyRogue658/fix-nextcloud-file-creation-date/main/README.md
+It is best to have a backup of nextcloud DB and data directory before running the script!
 
 This script overrides the file system creation date with the date taken from nextcloud DB
 uses SQL query by wwe (https://help.nextcloud.com/u/wwe)
@@ -46,53 +45,64 @@ see below for options
 sudo -u www-data php occ files:scan --all
 
 Examples
+```
 list files that will get their date changed
 & './fix nextcloud file creation date.ps1' `
 	-dbserver '127.0.0.1' `
 	-dbname 'owncloud' `
 	-dataDirectory '/media/owncloud_storage/data/' `
 	-action 'list'
-  
- list files that will get their date changed, table, show file name, create date in file system, and mtime in DB
- & './fix nextcloud file creation date.ps1' `
+```
+
+list files that will get their date changed, table, show file name, create date in file system, and mtime in DB
+```
+& './fix nextcloud file creation date.ps1' `
 	-dbserver '127.0.0.1' `
 	-dbname 'owncloud' `
 	-dataDirectory '/media/owncloud_storage/data/' `
 	-action 'list' `
 	| select-object fileName, CreationTime, epochToDateTime
+```
  
- show touch command syntax but do not touch files
- & './fix nextcloud file creation date.ps1' `
+show touch command syntax but do not touch files
+```
+& './fix nextcloud file creation date.ps1' `
 	-dbserver '127.0.0.1' `
 	-dbname 'owncloud' `
 	-dataDirectory '/media/owncloud_storage/data/' `
 	-action 'changeDateSimulated'
+```
 
 change create date ('Modify' date in Linux) to the date retrieved from DB
+```
 & './fix nextcloud file creation date.ps1' `
 	-dbserver '127.0.0.1' `
 	-dbname 'owncloud' `
 	-dataDirectory '/media/owncloud_storage/data/' `
 	-action 'changeDate'
+```
 
 troubleshooting
 list files that were found in DB but were not found in file system
+```
 & './fix nextcloud file creation date.ps1' `
 	-dbserver '127.0.0.1' `
 	-dbname 'owncloud' `
 	-dataDirectory '/media/owncloud_storage/data/' `
 	-action 'list' `
 	| where-object {$_.fileName -eq $null}
-  
-  same as above but count how many file are affected
-  & './fix nextcloud file creation date.ps1' `
+```
+
+same as above but count how many file are affected
+```
+& './fix nextcloud file creation date.ps1' `
 	-dbserver '127.0.0.1' `
 	-dbname 'owncloud' `
 	-dataDirectory '/media/owncloud_storage/data/' `
 	-action 'list' `
 	| where-object {$_.fileName -eq $null} `
 	| measure-object
-
+```
 
 
 
