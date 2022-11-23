@@ -11,38 +11,64 @@ tested on Ubuntu with MySQL DB
 This requires PowerShell as well as the PS module SimplySql
 
 1) download PowerShell
+```
 wget https://github.com/PowerShell/PowerShell/releases/download/v7.3.0/powershell_7.3.0-1.deb_amd64.deb
+```
 
 2) Install the downloaded package
+```
 sudo dpkg -i powershell_7.3.0-1.deb_amd64.deb
+```
 
 3) Resolve missing dependencies and finish the install (if necessary)
+```
 sudo apt-get install -f
+```
 
 4) start PS
+```
 /opt/microsoft/powershell/7/pwsh
+```
 
 5) Install SimplySql
+```
 Install-Module -Name SimplySql -Scope CurrentUser
+```
 
 6) import module
+```
 import-Module SimplySQL
+```
 
 7) confirm module is imported
+```
 Get-Module SimplySQL
+```
 
 8) download 'fix nextcloud file creation date.ps1' script
+```
 wget https://github.com/HappyRogue658/fix-nextcloud-file-creation-date/raw/main/fix%20nextcloud%20file%20creation%20date.ps1
+```
 
 9) optional: if you run the script multiple times, it now makes sense to enter SQL credentials, before running the script
+```
 $cred = get-credential
+```
 
 10) run script
 see below for options
+```
 & './fix nextcloud file creation date.ps1'
+```
 
 11) run occ scan
+```
 sudo -u www-data php occ files:scan --all
+```
+example
+```
+sudo -u www-data php '/var/www/nextcloud/occ' files:scan --all
+```
 
 Examples
 ```
