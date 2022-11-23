@@ -159,29 +159,30 @@ change create date ('Modify' date in Linux) to the date retrieved from DB
 ```
 
 ### Troubleshooting
-- file are in DB but not in file system
+- files are found in DB but not in file system
   
-before running occ scan, list files that were found in DB but were not found in file system
-```
-& './fix nextcloud file creation date.ps1' `
+  before running occ scan, list files that were found in DB but were not found in file system  
+  this seems to get fixed by running occ scan
+  ```
+  & './fix nextcloud file creation date.ps1' `
 	-dbserver '127.0.0.1' `
 	-dbname 'owncloud' `
 	-dataDirectory '/media/owncloud_storage/data/' `
 	-action 'list' `
 	| where-object {$_.fileName -eq $null}
-```
+  ```
 
-same as above but count how many file are affected
-```
-& './fix nextcloud file creation date.ps1' `
+  same as above but count how many file are affected
+  ```
+  & './fix nextcloud file creation date.ps1' `
 	-dbserver '127.0.0.1' `
 	-dbname 'owncloud' `
 	-dataDirectory '/media/owncloud_storage/data/' `
 	-action 'list' `
 	| where-object {$_.fileName -eq $null} `
 	| measure-object
-```
-- some files still have the wrong create date after running the script
+  ```
+- some files still have the wrong create date after running the script  
   this may happen if the file does not exist in the DB or if no viable mtime was found for the file.  
   You can check for this like so
   ```
