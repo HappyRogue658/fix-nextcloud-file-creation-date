@@ -10,6 +10,8 @@ uses SQL query by wwe (https://help.nextcloud.com/u/wwe)
 tested on Ubuntu with MySQL DB
 This requires PowerShell as well as the PS module SimplySql
 
+### Fixing timestamps
+
 1) download PowerShell
 ```
 wget https://github.com/PowerShell/PowerShell/releases/download/v7.3.0/powershell_7.3.0-1.deb_amd64.deb
