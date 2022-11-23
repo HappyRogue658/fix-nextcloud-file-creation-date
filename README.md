@@ -66,7 +66,7 @@ see below for options
 & './fix nextcloud file creation date.ps1'
 ```
 
-11) run occ scan
+11) run occ scan  
 example
 ```
 sudo -u www-data php '/var/www/nextcloud/occ' files:scan --all
