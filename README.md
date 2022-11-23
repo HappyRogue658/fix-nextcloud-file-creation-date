@@ -71,6 +71,24 @@ example
 ```
 sudo -u www-data php '/var/www/nextcloud/occ' files:scan --all
 ```
+12) optional: clean-up  
+- remove script
+```
+rm 'fix nextcloud file creation date.ps1'
+```
+- remove PS install file
+```
+rm 'powershell_7.3.0-1.deb_amd64.deb'
+```
+remove PS module SimplySQL
+```
+/opt/microsoft/powershell/7/pwsh
+Uninstall-Module -Name SimplySql
+```
+- remove PS
+```
+sudo apt-get remove powershell
+```
 
 ### Examples  
 list files that will get their date changed
