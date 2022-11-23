@@ -70,7 +70,7 @@ example
 sudo -u www-data php '/var/www/nextcloud/occ' files:scan --all
 ```
 
-Examples
+Examples  
 list files that will get their date changed
 ```
 & './fix nextcloud file creation date.ps1' `
