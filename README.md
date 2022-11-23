@@ -71,8 +71,8 @@ sudo -u www-data php '/var/www/nextcloud/occ' files:scan --all
 ```
 
 Examples
-```
 list files that will get their date changed
+```
 & './fix nextcloud file creation date.ps1' `
 	-dbserver '127.0.0.1' `
 	-dbname 'owncloud' `
