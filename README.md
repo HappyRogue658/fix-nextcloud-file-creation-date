@@ -57,43 +57,39 @@ see [SQL query by wwe](https://help.nextcloud.com/t/desktop-client-3-4-0-destroy
     ```
 
 #### 3) Install SimplySql
-```
-Install-Module -Name SimplySql -Scope CurrentUser
-```
-
-#### 4) Import module
-```
-Import-Module SimplySQL
-```
-
-#### 5) Optional: confirm module is imported
-```
-Get-Module SimplySQL
-```
-
-#### 5) Download script
+  - install module
+    ```
+    Install-Module -Name SimplySql -Scope CurrentUser
+    ```
+  - optional: test if module can be imported
+    ```
+    Import-Module SimplySQL
+    Get-Module SimplySQL
+    ```
+    
+#### 4) Download script
 ```
 wget https://github.com/HappyRogue658/fix-nextcloud-file-creation-date/raw/main/fix%20nextcloud%20file%20creation%20date.ps1
 ```
 
-#### 6) Optional: provide database credentials  
+#### 5) Optional: provide database credentials  
 If you run the script multiple times, it now makes sense to enter SQL credentials, before running the script  
 ```
 $cred = get-credential
 ```
 
-#### 7) Run script  
-see below for options
+#### 6) Run script  
+see [below](#Examples) for options
 ```
 & './fix nextcloud file creation date.ps1'
 ```
 
-#### 8) Run occ scan  
+#### 7) Run occ scan  
 example
 ```
 sudo -u www-data php '/var/www/nextcloud/occ' files:scan --all
 ```
-#### 9) optional: clean-up  
+#### 8) optional: clean-up  
   - remove script
     ```
     rm 'fix nextcloud file creation date.ps1'
