@@ -7,6 +7,7 @@ It is best to have a backup of nextcloud DB and data directory before running th
 This script overrides the file system file creation date of files in the nextcloud data directory with the date taken from nextcloud DB
 
 Uses SQL query by wwe (https://help.nextcloud.com/u/wwe)
+see https://help.nextcloud.com/t/desktop-client-3-4-0-destroys-local-time-stamp-and-keeps-uploading-data-to-server/128512/93
 
 tested on Ubuntu with MySQL DB
 This requires PowerShell as well as the PS module SimplySql
