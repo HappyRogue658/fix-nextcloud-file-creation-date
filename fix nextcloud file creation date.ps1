@@ -1,8 +1,10 @@
+#v1.02 Nov 23, 2022
+
 param
 (
   # variables define one or more parameters
   # this is a comma-separated list!
-    [parameter(Mandatory=$false)] $action = 'list',     #'list' list files, change nothign
+    [parameter(Mandatory=$false)] $action = 'list',     #'list' list files, change nothing
                                                         #'changeDateSimulated' show touch command
                                                         #'changeDate' change file creation date
     [parameter(Mandatory=$false)] $dbserver = '127.0.0.1',
@@ -41,7 +43,7 @@ $filesWithVersion = invoke-sqlquery -query "
         , FROM_UNIXTIME(mtime) AS filetime
     FROM oc_filecache
     WHERE path LIKE 'files/%' AND mtime=0 
-    #AND fileid=71598
+    #AND fileid=42091
     #LIMIT 1
     ) f
 
@@ -62,22 +64,28 @@ $actualFiles = @() #list of files without versions
 
 #find oldest mtime for file
 foreach ($file in $filesWithVersion) {
-
-    if ($actualFiles.fileid -notmatch $file.fileid) {
-        #file has not been added
-        $actualFiles += $file #add this version to list of files
+    if ($actualFiles.length -eq 0) {
+        #always add first file
+        $actualFiles += $file #add this version to list of files           
     }
     else {
-        if ($file.original_mtime -gt 0) {#account for invalid mtimes 
-            #this file already exists
-            #check mtime, look for oldest mtime
-            $actualFile = $actualFiles | where-object {$_.fileid -eq $file.fileid}
-            if ($actualFile.original_mtime -gt $file.original_mtime) {
-                #version's mtime is older than previously seen mtime
-                $actualFile.original_mtime = $file.original_mtime
+        #add more files if their fileid is new
+        $actualFile = $actualFiles | where-object {$_.fileid -eq $file.fileid}
+
+        if ($actualFile.fileid -ne $file.fileid) {
+            $actualFiles += $file #add this version to list of files             
+        }
+        else {
+            if ($file.original_mtime -gt 0) { #account for invalid mtimes 
+                #this file already exists
+                #check mtime, look for oldest mtime
+                if ($actualFile.original_mtime -gt $file.original_mtime) {
+                    #version's mtime is older than previously seen mtime
+                    $actualFile.original_mtime = $file.original_mtime
+                }
             }
         }
-    } 
+    }
 }
 
 #get file system path
@@ -111,8 +119,6 @@ foreach ($file in $actualFiles) {
         $warning = 'file: ' + $file.fspath + ' not found in: ' + $file.path
         Write-Warning $warning
     }
-
-    
 
     #create touch syntax
     $file.touchSyntax = '-m --date=@' + $file.original_mtime + ' ' + $file.path
