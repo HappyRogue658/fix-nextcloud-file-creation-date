@@ -4,8 +4,9 @@ fixes file creation date set back to 1970 by bugged version of nextcloud client
 
 It is best to have a backup of nextcloud DB and data directory before running the script!
 
-This script overrides the file system creation date with the date taken from nextcloud DB
-uses SQL query by wwe (https://help.nextcloud.com/u/wwe)
+This script overrides the file system file creation date of files in the nextcloud data directory with the date taken from nextcloud DB
+
+Uses SQL query by wwe (https://help.nextcloud.com/u/wwe)
 
 tested on Ubuntu with MySQL DB
 This requires PowerShell as well as the PS module SimplySql
