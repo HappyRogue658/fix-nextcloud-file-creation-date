@@ -46,12 +46,14 @@ see below for options
 sudo -u www-data php occ files:scan --all
 
 Examples
+```
 list files that will get their date changed
 & './fix nextcloud file creation date.ps1' `
 	-dbserver '127.0.0.1' `
 	-dbname 'owncloud' `
 	-dataDirectory '/media/owncloud_storage/data/' `
 	-action 'list'
+```
   
  list files that will get their date changed, table, show file name, create date in file system, and mtime in DB
  & './fix nextcloud file creation date.ps1' `
