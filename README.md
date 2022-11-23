@@ -128,7 +128,7 @@ change create date ('Modify' date in Linux) to the date retrieved from DB
 	-action 'changeDate'
 ```
 
-troubleshooting
+### Troubleshooting
 list files that were found in DB but were not found in file system
 ```
 & './fix nextcloud file creation date.ps1' `
