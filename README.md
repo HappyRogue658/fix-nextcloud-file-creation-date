@@ -60,7 +60,7 @@ wget https://github.com/HappyRogue658/fix-nextcloud-file-creation-date/raw/main/
 $cred = get-credential
 ```
 
-10) run script
+10) run script  
 see below for options
 ```
 & './fix nextcloud file creation date.ps1'
