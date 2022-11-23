@@ -67,9 +67,6 @@ see below for options
 ```
 
 11) run occ scan
-```
-sudo -u www-data php occ files:scan --all
-```
 example
 ```
 sudo -u www-data php '/var/www/nextcloud/occ' files:scan --all
