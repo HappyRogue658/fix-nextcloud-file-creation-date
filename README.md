@@ -24,7 +24,7 @@ see [SQL query by wwe](https://help.nextcloud.com/t/desktop-client-3-4-0-destroy
 
 & './fix nextcloud file creation date.ps1'
 
-### Fixing file creation dates
+### Fixing file creation dates<a id="fixing"/>
 
 #### 1) Install PowerShell
   - Microsoft recommended way
