@@ -1,16 +1,17 @@
 # fix-nextcloud-file-creation-date
-fixes file creation date set back to 1970 by bugged version of nextcloud client
+- fixes file creation date set back to 1970 by bugged version of nextcloud client
 (see https://help.nextcloud.com/t/desktop-client-3-4-0-destroys-local-time-stamp-and-keeps-uploading-data-to-server )
 
-It is best to have a backup of nextcloud DB and data directory before running the script!
+- It is best to have a backup of nextcloud DB and data directory before running the script!
 
-This script overrides the file system file creation date of files in the nextcloud data directory with the date taken from nextcloud DB
+- This script overrides the file system file creation date of files in the nextcloud data directory with the date taken from nextcloud DB
 
-Uses SQL query by wwe (https://help.nextcloud.com/u/wwe)
+- Uses SQL query by wwe (https://help.nextcloud.com/u/wwe)
 see https://help.nextcloud.com/t/desktop-client-3-4-0-destroys-local-time-stamp-and-keeps-uploading-data-to-server/128512/93
 
-tested on Ubuntu with MySQL DB
-This requires PowerShell as well as the PS module SimplySql
+- tested on Ubuntu with MySQL DB
+
+- This requires PowerShell as well as the PS module SimplySql
 
 ### fixing file creation dates
 
