@@ -2,9 +2,9 @@
 
 ### Contents
 - [About](#About)
-- Fixing file creation dates
-- Examples
-- Troubleshooting
+- [Fixing file creation dates](#Fixing file creation dates)
+- [Examples](#Examples)
+- [Troubleshooting](#Troubleshooting)
 
 ### About
 - fixes file creation date set back to 1970 by bugged version of nextcloud client
