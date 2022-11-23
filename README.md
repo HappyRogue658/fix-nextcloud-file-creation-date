@@ -10,7 +10,7 @@ uses SQL query by wwe (https://help.nextcloud.com/u/wwe)
 tested on Ubuntu with MySQL DB
 This requires PowerShell as well as the PS module SimplySql
 
-### Fixing timestamps
+### fixing file creation dates
 
 1) download PowerShell
 ```
