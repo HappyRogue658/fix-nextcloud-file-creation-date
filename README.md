@@ -22,8 +22,6 @@ see [SQL query by wwe](https://help.nextcloud.com/t/desktop-client-3-4-0-destroy
 - Requires [PowerShell](https://github.com/PowerShell/PowerShell) as well as the PS module [SimplySql](https://github.com/mithrandyr/SimplySql)
 
 
-& './fix nextcloud file creation date.ps1'
-
 ### Fixing file creation dates<a id="fixing"/>
 
 #### 1) Install PowerShell
@@ -77,19 +75,25 @@ If you run the script multiple times, it now makes sense to enter SQL credential
 ```
 $cred = get-credential
 ```
+#### 6) lock out users so they cannot change files while you are trying to fix files
+```
+sudo -u www-data php '/var/www/nextcloud/occ' maintenance:mode --on
+```
 
-#### 6) Run script  
+#### 7) Run script  
 see [below](#Examples) for options
 ```
 & './fix nextcloud file creation date.ps1'
 ```
+You should now look for files that the script could not fix, see [Troubleshooting](#Troubleshooting)
 
-#### 7) Run occ scan  
+#### 8) Run occ scan and turn maintenance mode off
 example
 ```
+sudo -u www-data php '/var/www/nextcloud/occ' maintenance:mode --off
 sudo -u www-data php '/var/www/nextcloud/occ' files:scan --all
 ```
-#### 8) optional: clean-up  
+#### 9) optional: clean-up  
   - remove script
     ```
     rm 'fix nextcloud file creation date.ps1'
@@ -125,13 +129,14 @@ list files that will get their date changed
 	-action 'list'
 ```
 
-list files that will get their date changed, table, show file name, create date in file system, and mtime in DB
+list files that will get their date changed, table, show file name, create date in file system, and mtime in DB, sort by file name
 ```
 & './fix nextcloud file creation date.ps1' `
 	-dbserver '127.0.0.1' `
 	-dbname 'owncloud' `
 	-dataDirectory '/media/owncloud_storage/data/' `
 	-action 'list' `
+	| sort-object fileName `
 	| select-object fileName, CreationTime, epochToDateTime
 ```
  
@@ -154,7 +159,9 @@ change create date ('Modify' date in Linux) to the date retrieved from DB
 ```
 
 ### Troubleshooting
-list files that were found in DB but were not found in file system
+- file are in DB but not in file system
+  
+before running occ scan, list files that were found in DB but were not found in file system
 ```
 & './fix nextcloud file creation date.ps1' `
 	-dbserver '127.0.0.1' `
@@ -174,10 +181,20 @@ same as above but count how many file are affected
 	| where-object {$_.fileName -eq $null} `
 	| measure-object
 ```
-
-
-
-
-
+- some files still have the wrong create date after running the script
+  this may happen if the file does not exist in the DB or if no viable mtime was found for the file.  
+  You can check for this like so
+  ```
+  $NextCloudDataDir = '/media/owncloud_storage/data'
+  $files = get-childitem -Recurse  $NextCloudDataDir
+  foreach ($file in $files) {$file.CreationTime = [DateTime]$file.CreationTime}
+  $BrokenFiles = $Files | where-object {$_.CreationTime -lt (get-date 1970-02-01)}
+  $BrokenFiles | select-object Name, FullName, CreationTime
+  ```
+  In my case, all those files where in user's trash bin and I decided to delete them
+  ```
+  $BrokenFiles | foreach {rm $_.FullName}
+  ```
+  
 
 
