@@ -2,7 +2,7 @@
 
 ### Contents
 - [About](#About)
-- [Fixing file creation dates](#Fixing)
+- [Fixing file creation dates](#Fixing file)
 - [Examples](#Examples)
 - [Troubleshooting](#Troubleshooting)
 
